@@ -62,8 +62,8 @@ main(int argc, char *argv[])
 	char startTabCheck;
 
 	while ((len = readln(buff, BUFFSIZE)) > 0) {
-		if (buff[0] == '/t') {
-			while ((fgets(buff[len + 1], BUFFSIZE - len, stdin) != NULL) && (line[0] != '\n')) {
+		if (buff[0] == '\t') {
+			while ((fgets(buff + len, BUFFSIZE - len, stdin) != NULL) && (line[0] != '\n')) {
 				printf("%s ", buff);
 			}
 		}
