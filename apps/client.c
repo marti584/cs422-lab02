@@ -58,13 +58,14 @@ main(int argc, char *argv[])
 	/* iterate: read input from the user, send to the server,	*/
 	/*	    receive reply from the server, and display for user */
 
-	// char line[BUFFSIZE];
+	
 	char startTabCheck;
 
 	while ((len = readln(buff, BUFFSIZE)) > 0) {
 		if (buff[0] == '\t') {
-			while ((fgets(buff + len, BUFFSIZE - len, stdin) != NULL) && (line[0] != '\n')) {
-				printf("%s ", buff);
+			char line[BUFFSIZE];
+			while ((fgets(line, BUFFSIZE, stdin) != NULL) && (line[0] != '\n')) {
+				printf("%s ", line);
 			}
 		}
 	}
