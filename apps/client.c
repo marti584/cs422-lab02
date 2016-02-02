@@ -65,7 +65,7 @@ main(int argc, char *argv[])
 		if (buff[0] == '\t') {
 			char line[BUFFSIZE];
 			while ((fgets(line, BUFFSIZE, stdin) != NULL) && (line[0] != '\n')) {
-				strcat(buff, line);
+				(void) strcat(buff, line);
 			}
 			printf("%s", buff);
 		}
