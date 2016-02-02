@@ -6,8 +6,6 @@
 #include <cnaiapi.h>
 
 #define BUFFSIZE		1000000
-#define INPUT_PROMPT		"Input   > "
-#define RECEIVED_PROMPT		"Received> "
 
 int readln(char *, int);
 
@@ -28,7 +26,7 @@ main(int argc, char *argv[])
 	appnum		app;
 	connection	conn;
 	char		buff[BUFFSIZE];
-	int		expect, received, len;
+	int			len;
 
 	if (argc < 2 || argc > 3) {
 		(void) fprintf(stderr, "usage: %s <SERVER_IP> [SERVER_APPLICATION_NUMBER]\n", argv[0]);
@@ -89,32 +87,6 @@ main(int argc, char *argv[])
 		uint32_t length = htonl(len);
 		send(conn, buff, len, 0);
 	}
-
-	// while((len = readln(buff, BUFFSIZE)) > 0) {
-
-	// 	/* send the input to the echoserver */
-
-	// 	(void) send(conn, buff, len, 0);
-	// 	(void) printf(RECEIVED_PROMPT);
-	// 	(void) fflush(stdout);
-
-	// 	/* read and print same no. of bytes from echo server */
-
-	// 	expect = len;
-	// 	for (received = 0; received < expect;) {
-	// 	   len = recv(conn, buff, (expect - received) < BUFFSIZE ?
-	// 			 (expect - received) : BUFFSIZE, 0);
-	// 		if (len < 0) {
-	// 			send_eof(conn);
-	// 			return 1;
-	// 		}
-	// 		(void) write(STDOUT_FILENO, buff, len);
-	// 		received += len;
-	// 	}
-	// 	(void) printf("\n");
-	// 	(void) printf(INPUT_PROMPT);
-	// 	(void) fflush(stdout);
-	// }
 
 	/* iteration ends when EOF found on stdin */
 
