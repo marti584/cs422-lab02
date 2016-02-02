@@ -54,22 +54,40 @@ main(int argc, char *argv[])
 		exit(1);
 
 	// (void) printf(INPUT_PROMPT);
-	(void) fflush(stdout);
+	// (void) fflush(stdout);
+
+	bool lastMessageSent = true;
 
 	/* iterate: read input from the user, send to the server,	*/
 	/*	    receive reply from the server, and display for user */
 
-	
-	char startTabCheck;
-
 	while ((len = readln(buff, BUFFSIZE)) > 0) {
+
+		/* Read every line and check if it starts with a tab */
 		if (buff[0] == '\t') {
+
 			char line[BUFFSIZE];
-			while ((fgets(line, BUFFSIZE, stdin) != NULL) && (line[0] != '\n')) {
+			int len2;
+			lastMessageSent = false;
+
+			/* Now we can read the input and store it in a temp array
+				of characters and concatenate the buffer so we can get
+				our whole paragraph */
+			while ((len2 = readln(buff, BUFFSIZE)) > 0 && (line[0] != '\n')) {
 				(void) strcat(buff, line);
+				len += len2;
 			}
-			printf("%s", buff);
+			uint32_t length = htonl(uint32_t len);
+			send(conn, buff, len, 0);
+			lastMessageSent = true;
+			// printf("%s", buff);
 		}
+	}
+
+	// This check is to make sure at an EOF we still send the buffer if we were planning to
+	if (!lastMessageSent) {
+		uint32_t length = htonl(uint32_t len);
+		send(conn, buff, len, 0);
 	}
 
 	// while((len = readln(buff, BUFFSIZE)) > 0) {
