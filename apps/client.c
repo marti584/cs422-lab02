@@ -56,7 +56,7 @@ main(int argc, char *argv[])
 	// (void) printf(INPUT_PROMPT);
 	// (void) fflush(stdout);
 
-	bool lastMessageSent = true;
+	int lastMessageSent = 1;
 
 	/* iterate: read input from the user, send to the server,	*/
 	/*	    receive reply from the server, and display for user */
@@ -68,7 +68,7 @@ main(int argc, char *argv[])
 
 			char line[BUFFSIZE];
 			int len2;
-			lastMessageSent = false;
+			lastMessageSent = 0;
 
 			/* Now we can read the input and store it in a temp array
 				of characters and concatenate the buffer so we can get
@@ -77,16 +77,16 @@ main(int argc, char *argv[])
 				(void) strcat(buff, line);
 				len += len2;
 			}
-			uint32_t length = htonl(uint32_t len);
+			uint32_t length = htonl(len);
 			send(conn, buff, len, 0);
-			lastMessageSent = true;
+			lastMessageSent = 1;
 			// printf("%s", buff);
 		}
 	}
 
 	// This check is to make sure at an EOF we still send the buffer if we were planning to
 	if (!lastMessageSent) {
-		uint32_t length = htonl(uint32_t len);
+		uint32_t length = htonl(len);
 		send(conn, buff, len, 0);
 	}
 
