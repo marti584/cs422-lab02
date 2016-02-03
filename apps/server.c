@@ -36,29 +36,52 @@ main(int argc, char *argv[])
 	if (conn < 0)
 		exit(1);
 
-	/* iterate, echoing all data received until end of file */
-
+	// Waits for 4 bytes to come through because we know that will
+	// be the size of the paragraph
 	while((len = recv(conn, size, 4, 0)) > 0) {
 
+		// Print that we've received a paragraph
 		printf("%s", INITIAL_OUTPUT);
+
+		// These 4 bytes are the size of the paragraph
+		// So we are converting it from the Network Endianness
+		// to our host Endianness
 		uint32_t len = ntohl(*((unsigned long*) size));
-		fflush(stdout);
+
+		// Keep track of the number bytes read from the paragraph
 		int bytesRead = 0;
+
+		// Keep concatenating on this char array for the whole paragraph
 		char paragraph[BUFFSIZE];
+
+		// Keep reading until we have all the bytes
 		while (bytesRead < len) {
+
+			// Smaller buffer for the characters read on this recv() call
 			char charactersRead[BUFFSIZE];
 			int lengthOfBytes;
+
+			// Read some bytes from the sender
 			if (lengthOfBytes = recv(conn, charactersRead, BUFFSIZE, 0) > 0) {
+				// Concatenate our paragraph with the bytes that were read
 				strcat(paragraph, charactersRead);
+
+				// Increment the counter with the size of the bytes read
 				bytesRead += strlen(charactersRead);
+
+				// Clear the charactersRead buffer just for security
 				memset(&charactersRead[0], 0, sizeof(charactersRead));
 			}
 		}
+
+		// Print the paragraph
 		printf("%s", paragraph);
+
 		fflush(stdout);
+
+		// Clear the paragraph buffer
 		memset(&paragraph[0], 0, sizeof(paragraph));
 	}
-	// fflush(stdout);
 
 	send_eof(conn);
 	fflush(stdout);
