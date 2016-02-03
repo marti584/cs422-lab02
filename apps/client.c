@@ -76,26 +76,19 @@ main(int argc, char *argv[])
 				(void) strcat(buff, line);
 				len2 = strlen(line);
 				len += len2;
-				// printf("Packets Sent: %d", len2);
-				// fflush(stdout);
 			}
 			uint32_t length = htonl(len);
 
-			char paragraph[BUFFSIZE];
-
 			send(conn, &length, 4, 0);
 
-			strcat(paragraph, buff);
 			if ((len2 = send(conn, paragraph, len, 0)) < 0) {
 				printf("Send Failed");
 				fflush(stdout);
 			}
 			memset(&buff[0], 0, sizeof(buff));
-			memset(&paragraph[0], 0, sizeof(paragraph));
 			memset(&line[0], 0, sizeof(line));
 			fflush(stdout);
 			lastMessageSent = 1;
-			// printf("%s", buff);
 		}
 	}
 
@@ -104,6 +97,8 @@ main(int argc, char *argv[])
 		uint32_t length = htonl(len);
 		send(conn, &length, 4, 0);
 		send(conn, buff, len, 0);
+		memset(&buff[0], 0, sizeof(buff));
+		printf("Message didn't send");
 	}
 
 	/* iteration ends when EOF found on stdin */
