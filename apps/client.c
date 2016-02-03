@@ -74,6 +74,8 @@ main(int argc, char *argv[])
 			while ((len2 = readln(buff, BUFFSIZE)) > 0 && (line[0] != '\n')) {
 				(void) strcat(buff, line);
 				len += len2;
+				printf("Packets Sent: %d", len2);
+				fflush(stdout);
 			}
 			uint32_t length = htonl(len);
 			// if (send(conn, length, 4, 0) < 0)
