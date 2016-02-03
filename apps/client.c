@@ -80,30 +80,18 @@ main(int argc, char *argv[])
 				// fflush(stdout);
 			}
 			uint32_t length = htonl(len);
-			// if (send(conn, length, 4, 0) < 0)
-			// 	printf("Send Failed");
-			printf("%d\n", length);
 
 			char paragraph[BUFFSIZE];
 
-			unsigned char size[4];
-			size[0] = (length >> 24) & 0xFF;
-			size[1] = (length >> 16) & 0xFF;
-			size[2] = (length >> 8) & 0xFF;
-			size[3] = length & 0xFF;
-
-			printf("%x %x %x %x\n", size[0], size[1], size[2], size[3]);
-			// sprintf(paragraph, "%x%x%x%x\n", size[0], size[1], size[2], size[3]);
 			send(conn, &length, 4, 0);
-			printf("%s\n", size);
-			// sprintf(paragraph, "%d", length);
-			// strcat(paragraph, size);
+
 			strcat(paragraph, buff);
 			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
 				printf("Send Failed");
 				fflush(stdout);
 			}
-			printf("Packets Sent: %lu", len2);
+			memset(&buff[0], 0, sizeof(buff));
+			memset(&paragraph[0], 0, sizeof(paragraph));
 			fflush(stdout);
 			lastMessageSent = 1;
 			// printf("%s", buff);
@@ -113,6 +101,7 @@ main(int argc, char *argv[])
 	// This check is to make sure at an EOF we still send the buffer if we were planning to
 	if (!lastMessageSent) {
 		uint32_t length = htonl(len);
+		send(conn, &length, 4, 0);
 		send(conn, buff, len, 0);
 	}
 

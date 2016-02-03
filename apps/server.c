@@ -42,8 +42,6 @@ main(int argc, char *argv[])
 
 		printf("%s", INITIAL_OUTPUT);
 		uint32_t len = ntohl(*((unsigned long*) size));
-		printf("%d\n", len);
-		printf("%s\n", size);
 		fflush(stdout);
 		int bytesRead = 0;
 		char paragraph[BUFFSIZE];
@@ -51,11 +49,9 @@ main(int argc, char *argv[])
 			char charactersRead[BUFFSIZE];
 			int lengthOfBytes;
 			if (lengthOfBytes = recv(conn, charactersRead, BUFFSIZE, 0) > 0) {
-				printf("Is this comeing out? %s\n", charactersRead);
 				strcat(paragraph, charactersRead);
 				bytesRead += strlen(charactersRead);
 			}
-			printf("Nthing %d\n", bytesRead);
 		}
 		printf("%s\n", paragraph);
 		fflush(stdout);
