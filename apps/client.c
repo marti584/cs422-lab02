@@ -86,9 +86,10 @@ main(int argc, char *argv[])
 
 			char paragraph[BUFFSIZE + 4];
 			char *size = (char*)&length;
-			printf("%s\n", size);
+			char sizes[4] = {size[0], size[1], size[2], size[3]};
+			printf("%s\n", sizes);
 			// sprintf(paragraph, "%d", length);
-			strcat(paragraph, size);
+			strcat(paragraph, sizes);
 			strcat(paragraph, buff);
 			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
 				printf("Send Failed");
