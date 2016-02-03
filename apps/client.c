@@ -59,7 +59,7 @@ main(int argc, char *argv[])
 
 		/* Read every line and check if it starts with a tab */
 		if (buff[0] == '\t') {
-
+			
 			char line[BUFFSIZE];
 			unsigned long len2;
 
@@ -70,6 +70,7 @@ main(int argc, char *argv[])
 				(void) strcat(buff, line);
 				len2 = strlen(line);
 				len += len2;
+				memset(&line[0], 0, sizeof(line));
 			}
 			uint32_t length = htonl(len);
 
