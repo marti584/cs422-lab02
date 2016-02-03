@@ -87,6 +87,7 @@ main(int argc, char *argv[])
 			}
 			memset(&buff[0], 0, sizeof(buff));
 			memset(&line[0], 0, sizeof(line));
+			printf("Sent\n");
 			fflush(stdout);
 			lastMessageSent = 1;
 		}
@@ -100,7 +101,7 @@ main(int argc, char *argv[])
 		memset(&buff[0], 0, sizeof(buff));
 		printf("Message didn't send");
 	}
-	
+
 	/* iteration ends when EOF found on stdin */
 
 	(void) send_eof(conn);
