@@ -93,14 +93,13 @@ main(int argc, char *argv[])
 	}
 
 	// This check is to make sure at an EOF we still send the buffer if we were planning to
-	if (!lastMessageSent) {
+	if (lastMessageSent == 0) {
 		uint32_t length = htonl(len);
 		send(conn, &length, 4, 0);
 		send(conn, buff, len, 0);
 		memset(&buff[0], 0, sizeof(buff));
 		printf("Message didn't send");
 	}
-
 	/* iteration ends when EOF found on stdin */
 
 	(void) send_eof(conn);
