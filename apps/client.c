@@ -61,10 +61,9 @@ main(int argc, char *argv[])
 	/*	    receive reply from the server, and display for user */
 
 	while ((len = readln(buff, BUFFSIZE)) > 0) {
-		printf("REading \n");
+
 		/* Read every line and check if it starts with a tab */
 		if (buff[0] == '\t') {
-			printf("Has a tab\n");
 
 			char line[BUFFSIZE];
 			unsigned long len2;
@@ -88,7 +87,6 @@ main(int argc, char *argv[])
 			}
 			memset(&buff[0], 0, sizeof(buff));
 			memset(&line[0], 0, sizeof(line));
-			printf("Sent\n");
 			fflush(stdout);
 			lastMessageSent = 1;
 		}
@@ -102,7 +100,7 @@ main(int argc, char *argv[])
 		memset(&buff[0], 0, sizeof(buff));
 		printf("Message didn't send");
 	}
-
+	
 	/* iteration ends when EOF found on stdin */
 
 	(void) send_eof(conn);
