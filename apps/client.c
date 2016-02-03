@@ -93,7 +93,7 @@ main(int argc, char *argv[])
 	}
 
 	// This check is to make sure at an EOF we still send the buffer if we were planning to
-	if (lastMessageSent == 0) {
+	if (lastMessageSent == 1) {
 		uint32_t length = htonl(len);
 		send(conn, &length, 4, 0);
 		send(conn, buff, len, 0);
