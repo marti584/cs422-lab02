@@ -33,7 +33,7 @@ main(int argc, char *argv[])
 	conn = await_contact((appnum) atoi(argv[1]));
 	if (conn < 0)
 		exit(1);
-
+	printf("Connected");
 	/* iterate, echoing all data received until end of file */
 
 	while((len = recv(conn, buff, 4, 0)) > 0) {
