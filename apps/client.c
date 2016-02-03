@@ -82,7 +82,7 @@ main(int argc, char *argv[])
 			uint32_t length = htonl(len);
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
-			printf("%lu\n", length);
+			printf("%d\n", length);
 
 			char paragraph[BUFFSIZE + 4];
 
@@ -102,7 +102,7 @@ main(int argc, char *argv[])
 				printf("Send Failed");
 				fflush(stdout);
 			}
-			printf("Packets Sent: %d", len2);
+			printf("Packets Sent: %lu", len2);
 			fflush(stdout);
 			lastMessageSent = 1;
 			// printf("%s", buff);
