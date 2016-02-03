@@ -27,7 +27,7 @@ main(int argc, char *argv[])
 	appnum		app;
 	connection	conn;
 	char		buff[BUFFSIZE];
-	int			len;
+	unsigned long			len;
 
 	if (argc < 2 || argc > 3) {
 		(void) fprintf(stderr, "usage: %s <SERVER_IP> [SERVER_APPLICATION_NUMBER]\n", argv[0]);
@@ -66,7 +66,7 @@ main(int argc, char *argv[])
 		if (buff[0] == '\t') {
 
 			char line[BUFFSIZE];
-			int len2;
+			unsigned long len2;
 			lastMessageSent = 0;
 
 			/* Now we can read the input and store it in a temp array
@@ -86,11 +86,13 @@ main(int argc, char *argv[])
 
 			char paragraph[BUFFSIZE + 4];
 
-			char size[4];
+			unsigned char size[4];
 			size[0] = (length >> 24) & 0xFF;
 			size[1] = (length >> 16) & 0xFF;
 			size[2] = (length >> 8) & 0xFF;
 			size[3] = length & 0xFF;
+
+			printf("%x %x %x %x\n", size[0], size[1], size[2], size[3]);
 
 			printf("%s\n", size);
 			// sprintf(paragraph, "%d", length);
