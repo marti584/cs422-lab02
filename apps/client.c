@@ -86,12 +86,13 @@ main(int argc, char *argv[])
 			send(conn, &length, 4, 0);
 
 			strcat(paragraph, buff);
-			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
+			if ((len2 = send(conn, paragraph, len, 0)) < 0) {
 				printf("Send Failed");
 				fflush(stdout);
 			}
 			memset(&buff[0], 0, sizeof(buff));
 			memset(&paragraph[0], 0, sizeof(paragraph));
+			memset(&line[0], 0, sizeof(line));
 			fflush(stdout);
 			lastMessageSent = 1;
 			// printf("%s", buff);
