@@ -82,7 +82,7 @@ main(int argc, char *argv[])
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
 			char paragraph[BUFFSIZE + 4];
-			sprintf(paragraph, "%d", length));
+			sprintf(paragraph, "%d", length);
 			strcat(paragraph, buff);
 			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
 				printf("Send Failed");
