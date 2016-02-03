@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cnaiapi.h>
+#include <netinet/in.h>
 
 #define BUFFSIZE		1000000
 
@@ -82,9 +83,11 @@ main(int argc, char *argv[])
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
 			printf("%d\n", length);
-			
+
 			char paragraph[BUFFSIZE + 4];
-			sprintf(paragraph, "%d", length);
+			char size[4] = length;
+			// sprintf(paragraph, "%d", length);
+			strcat(paragraph, size);
 			strcat(paragraph, buff);
 			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
 				printf("Send Failed");

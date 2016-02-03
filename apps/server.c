@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cnaiapi.h>
+#include <netinet/in.h>
 
 #define BUFFSIZE		1000000
 #define INITIAL_OUTPUT	"Received Paragraph >\n"
