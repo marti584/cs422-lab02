@@ -38,7 +38,7 @@ main(int argc, char *argv[])
 
 	while((len = recv(conn, buff, BUFFSIZE, 0)) > 0) {
 		printf("%s", INITIAL_OUTPUT);
-		uint32_t len = ntohl(buff);
+		uint32_t len = ntohl((uint32_t)buff);
 		printf("%d", len);
 	}
 

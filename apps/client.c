@@ -76,7 +76,7 @@ main(int argc, char *argv[])
 				len += len2;
 			}
 			uint32_t length = htonl(len);
-			send(conn, len, 4, 0);
+			send(conn, length, 4, 0);
 			send(conn, buff, len, 0);
 			lastMessageSent = 1;
 			// printf("%s", buff);
