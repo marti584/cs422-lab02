@@ -94,7 +94,7 @@ main(int argc, char *argv[])
 
 			printf("%x %x %x %x\n", size[0], size[1], size[2], size[3]);
 			// sprintf(paragraph, "%x%x%x%x\n", size[0], size[1], size[2], size[3]);
-			send(conn, length, 4, 0);
+			send(conn, &length, 4, 0);
 			printf("%s\n", size);
 			// sprintf(paragraph, "%d", length);
 			// strcat(paragraph, size);
