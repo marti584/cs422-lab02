@@ -41,7 +41,7 @@ main(int argc, char *argv[])
 	while((len = recv(conn, size, 4, 0)) > 0) {
 
 		printf("%s", INITIAL_OUTPUT);
-		uint32_t len = ntohl(*((uint32_t*) size));
+		uint32_t len = ntohl(*((unsigned long*) size));
 		printf("%d\n", len);
 		printf("%s\n", size);
 		fflush(stdout);
