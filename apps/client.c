@@ -92,6 +92,7 @@ main(int argc, char *argv[])
 			size[2] = (length >> 8) & 0xFF;
 			size[3] = length & 0xFF;
 
+			printf("%x %x %x %x\n", size[0], size[1], size[2], size[3]);
 			sprintf(paragraph, "%x %x %x %x\n", size[0], size[1], size[2], size[3]);
 
 			printf("%s\n", size);
