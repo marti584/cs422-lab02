@@ -36,9 +36,9 @@ main(int argc, char *argv[])
 
 	/* iterate, echoing all data received until end of file */
 
-	while((len = recv(conn, buff, BUFFSIZE, 0)) > 0) {
+	while((len = recv(conn, buff, 4, 0)) > 0) {
 		printf("%s", INITIAL_OUTPUT);
-		uint32_t len = ntohl((uint32_t)buff);
+		uint32_t len = ntohl(*((uint32_t*) buff));
 		printf("%d", len);
 	}
 
