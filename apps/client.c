@@ -81,7 +81,7 @@ main(int argc, char *argv[])
 
 			send(conn, &length, 4, 0);
 
-			if ((len2 = send(conn, paragraph, len, 0)) < 0) {
+			if ((len2 = send(conn, buff, len, 0)) < 0) {
 				printf("Send Failed");
 				fflush(stdout);
 			}
