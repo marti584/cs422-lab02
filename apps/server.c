@@ -55,6 +55,7 @@ main(int argc, char *argv[])
 				strcat(paragraph, charactersRead);
 				bytesRead += lengthOfBytes;
 			}
+			printf("Nthing\n");
 		}
 		printf("%s\n", paragraph);
 		fflush(stdout);
