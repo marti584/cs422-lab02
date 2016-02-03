@@ -64,6 +64,7 @@ main(int argc, char *argv[])
 		printf("REading \n");
 		/* Read every line and check if it starts with a tab */
 		if (buff[0] == '\t') {
+			printf("Has a tab\n");
 
 			char line[BUFFSIZE];
 			unsigned long len2;
