@@ -71,8 +71,9 @@ main(int argc, char *argv[])
 			/* Now we can read the input and store it in a temp array
 				of characters and concatenate the buffer so we can get
 				our whole paragraph */
-			while ((len2 = readln(buff, BUFFSIZE)) > 0 && (line[0] != '\n')) {
+			while ((fgets(line, BUFFSIZE, stdin) != NULL) && (line[0] != '\n')) {
 				(void) strcat(buff, line);
+				len2 = strlen(line);
 				len += len2;
 				printf("Packets Sent: %d", len2);
 				fflush(stdout);
