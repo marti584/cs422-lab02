@@ -78,8 +78,10 @@ main(int argc, char *argv[])
 			uint32_t length = htonl(len);
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
-			if (send(conn, buff, len, 0) < 0)
+			if (send(conn, buff, len, 0) < 0) {
 				printf("Send Failed");
+				fflush(stdout);
+			}
 			lastMessageSent = 1;
 			// printf("%s", buff);
 		}
