@@ -2,9 +2,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <cnaiapi.h>
 
-#define BUFFSIZE		256
+#define BUFFSIZE		1000000
+#define INITIAL_OUTPUT	"Received Paragraph >\n"
 
 /*-----------------------------------------------------------------------
  *
@@ -18,11 +20,11 @@ int
 main(int argc, char *argv[])
 {
 	connection	conn;
-	int		len;
+	int			len;
 	char		buff[BUFFSIZE];
 
 	if (argc != 2) {
-		(void) fprintf(stderr, "usage: %s <appnum>\n", argv[0]);
+		(void) fprintf(stderr, "usage: %s <SERVER_APPLICATION_NUMBER>\n", argv[0]);
 		exit(1);
 	}
 
@@ -34,8 +36,12 @@ main(int argc, char *argv[])
 
 	/* iterate, echoing all data received until end of file */
 
-	while((len = recv(conn, buff, BUFFSIZE, 0)) > 0)
-		(void) send(conn, buff, len, 0);
+	while((len = recv(conn, buff, BUFFSIZE, 0)) > 0) {
+		printf("%s", INITIAL_OUTPUT);
+		uint32_t len = ntohl(buff);
+		printf("%d", len);
+	}
+
 	send_eof(conn);
 	return 0;
 }
