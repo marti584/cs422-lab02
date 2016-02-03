@@ -81,6 +81,8 @@ main(int argc, char *argv[])
 			uint32_t length = htonl(len);
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
+			printf("%d\n", length);
+			
 			char paragraph[BUFFSIZE + 4];
 			sprintf(paragraph, "%d", length);
 			strcat(paragraph, buff);
