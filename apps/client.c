@@ -72,7 +72,7 @@ main(int argc, char *argv[])
 			/* Now we can read the input and store it in a temp array
 				of characters and concatenate the buffer so we can get
 				our whole paragraph */
-			while ((fgets(line, BUFFSIZE, stdin) != NULL) && (line[0] != '\n')) {
+			while ((readln(line, BUFFSIZE) > 0) && (line[0] != '\n')) {
 				(void) strcat(buff, line);
 				len2 = strlen(line);
 				len += len2;
