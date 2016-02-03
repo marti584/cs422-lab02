@@ -84,7 +84,7 @@ main(int argc, char *argv[])
 			// 	printf("Send Failed");
 			printf("%d\n", length);
 
-			char paragraph[BUFFSIZE + 4];
+			char paragraph[BUFFSIZE];
 
 			unsigned char size[4];
 			size[0] = (length >> 24) & 0xFF;
@@ -93,8 +93,8 @@ main(int argc, char *argv[])
 			size[3] = length & 0xFF;
 
 			printf("%x %x %x %x\n", size[0], size[1], size[2], size[3]);
-			sprintf(paragraph, "%x %x %x %x\n", size[0], size[1], size[2], size[3]);
-
+			// sprintf(paragraph, "%x%x%x%x\n", size[0], size[1], size[2], size[3]);
+			send(conn, length, 4, 0);
 			printf("%s\n", size);
 			// sprintf(paragraph, "%d", length);
 			// strcat(paragraph, size);

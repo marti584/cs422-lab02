@@ -38,7 +38,7 @@ main(int argc, char *argv[])
 
 	/* iterate, echoing all data received until end of file */
 
-	while((len = recv(conn, size, 8, 0)) > 0) {
+	while((len = recv(conn, size, 4, 0)) > 0) {
 
 		printf("%s", INITIAL_OUTPUT);
 		uint32_t len = ntohl(*((unsigned long*) size));
