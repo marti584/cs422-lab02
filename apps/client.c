@@ -86,7 +86,6 @@ main(int argc, char *argv[])
 
 			char paragraph[BUFFSIZE + 4];
 			char *size = (char*)&length;
-			printf("%s\n", size);
 			// sprintf(paragraph, "%d", length);
 			strcat(paragraph, size);
 			strcat(paragraph, buff);
