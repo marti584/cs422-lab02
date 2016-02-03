@@ -75,13 +75,16 @@ main(int argc, char *argv[])
 				(void) strcat(buff, line);
 				len2 = strlen(line);
 				len += len2;
-				printf("Packets Sent: %d", len2);
-				fflush(stdout);
+				// printf("Packets Sent: %d", len2);
+				// fflush(stdout);
 			}
 			uint32_t length = htonl(len);
 			// if (send(conn, length, 4, 0) < 0)
 			// 	printf("Send Failed");
-			if ((len2 = send(conn, buff, len, 0)) < 0) {
+			char paragraph[BUFFSIZE + 4];
+			strcat(paragraph, length);
+			strcat(paragraph, buff);
+			if ((len2 = send(conn, paragraph, len + 4, 0)) < 0) {
 				printf("Send Failed");
 				fflush(stdout);
 			}

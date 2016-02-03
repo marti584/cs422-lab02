@@ -21,6 +21,7 @@ main(int argc, char *argv[])
 {
 	connection	conn;
 	int			len;
+	char 		size[4];
 	char		buff[BUFFSIZE];
 
 	if (argc != 2) {
@@ -33,13 +34,25 @@ main(int argc, char *argv[])
 	conn = await_contact((appnum) atoi(argv[1]));
 	if (conn < 0)
 		exit(1);
-	printf("Connected\n");
+
 	/* iterate, echoing all data received until end of file */
 
-	while((len = recv(conn, buff, BUFFSIZE, 0)) > 0) {
+	while((len = recv(conn, size, 4, 0)) > 0) {
+
 		printf("%s", INITIAL_OUTPUT);
-		// uint32_t len = ntohl(*((uint32_t*) buff));
-		printf("%d\n", len);
+		uint32_t len = ntohl(*((uint32_t*) size));
+		// printf("%d\n", len);
+		int bytesRead = 0;
+		char paragraph[BUFFSIZE];
+		while (bytesRead < len) {
+			char charactersRead[BUFFSIZE];
+			int lengthOfBytes;
+			if (lengthOfBytes = recv(conn, charactersRead, BUFFSIZE, 0) > 0) {
+				strcat(paragraph, charactersRead);
+				bytesRead += lengthOfBytes;
+			}
+		}
+		printf("%s\n", paragraph);
 		fflush(stdout);
 	}
 
