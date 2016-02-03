@@ -85,7 +85,7 @@ main(int argc, char *argv[])
 			printf("%d\n", length);
 
 			char paragraph[BUFFSIZE + 4];
-			char size[4] = (char*)&length;
+			char *size = (char*)&length;
 			printf("%s\n", size);
 			// sprintf(paragraph, "%d", length);
 			strcat(paragraph, size);
