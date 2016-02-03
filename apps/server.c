@@ -42,6 +42,7 @@ main(int argc, char *argv[])
 		printf("%s", INITIAL_OUTPUT);
 		uint32_t len = ntohl(*((uint32_t*) size));
 		printf("%d\n", len);
+		printf("%s\n", size);
 		fflush(stdout);
 		int bytesRead = 0;
 		char paragraph[BUFFSIZE];
