@@ -53,7 +53,7 @@ main(int argc, char *argv[])
 			if (lengthOfBytes = recv(conn, charactersRead, BUFFSIZE, 0) > 0) {
 				printf("Is this comeing out? %s\n", charactersRead);
 				strcat(paragraph, charactersRead);
-				bytesRead += lengthOfBytes;
+				bytesRead += strlen(charactersRead);
 			}
 			printf("Nthing %d\n", bytesRead);
 		}
