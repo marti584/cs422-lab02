@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 				memset(&charactersRead[0], 0, sizeof(charactersRead));
 			}
 		}
-		printf("%s\n", paragraph);
+		printf("%s", paragraph);
 		fflush(stdout);
 		memset(&paragraph[0], 0, sizeof(paragraph));
 	}
