@@ -61,7 +61,7 @@ main(int argc, char *argv[])
 	/*	    receive reply from the server, and display for user */
 
 	while ((len = readln(buff, BUFFSIZE)) > 0) {
-
+		printf("REading \n");
 		/* Read every line and check if it starts with a tab */
 		if (buff[0] == '\t') {
 
