@@ -58,7 +58,9 @@ main(int argc, char *argv[])
 		fflush(stdout);
 		memset(&paragraph[0], 0, sizeof(paragraph));
 	}
+	// fflush(stdout);
 
 	send_eof(conn);
+	fflush(stdout);
 	return 0;
 }
